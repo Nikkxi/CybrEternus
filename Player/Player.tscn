@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://c50ms1m1reutm"]
+
+[ext_resource type="Texture2D" uid="uid://biwwde61vgjf" path="res://icon.svg" id="1_b8l6f"]
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_qrcnr"]
+[ext_resource type="Script" path="res://Player/Derp.gd" id="3_lik32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2xt5t"]
+size = Vector2(32, 32)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qrcnr")
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2xt5t")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_b8l6f")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("3_lik32")
