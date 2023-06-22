@@ -57,5 +57,12 @@ quit={
 
 [layer_names]
 
-2d_physics/layer_1="Terrain"
-2d_physics/layer_2="Trees_Buildings"
+2d_physics/layer_1="CollidableObjects"
+2d_physics/layer_2="PlayerHitDetection"
+2d_physics/layer_3="MonsterHitDetection"
+
+[physics]
+
+2d/run_on_separate_thread=true
+2d/physics_engine="GodotPhysics2D"
+2d/default_gravity_vector=Vector2(0, 0)
