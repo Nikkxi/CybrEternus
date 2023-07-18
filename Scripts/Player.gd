@@ -4,7 +4,12 @@ extends CharacterBody2D
 @export_range(10,100) var SPEED = 30
 @export var loot:String
 
+var health:Health
+
 signal respawn_player
+
+func _ready():
+	pass
 
 func _process(delta):
 	if Input.is_action_pressed("quit"):
@@ -37,3 +42,7 @@ func _physics_process(delta):
 
 func _on_health_dies():
 	print("Drops loot: " + loot)
+
+func _on_button_pressed() -> bool:
+	get_node("Health").takeDamage(2)
+	return true

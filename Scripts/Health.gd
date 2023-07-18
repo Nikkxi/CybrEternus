@@ -6,6 +6,7 @@ class_name Health
 var current_health
 
 signal Dies
+signal current_health_updated
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,8 +16,10 @@ func _ready():
 func takeDamage(damage:int):
 	current_health -= damage
 	
+	emit_signal("current_health_updated", current_health)
+	
 	if current_health <= 0:
-		emit_signal("Dies")
+		Dies.emit()
 
 
 func receiveHealing(health:int):

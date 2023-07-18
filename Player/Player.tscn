@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c50ms1m1reutm"]
+[gd_scene load_steps=5 format=3 uid="uid://c50ms1m1reutm"]
 
 [ext_resource type="Texture2D" uid="uid://biwwde61vgjf" path="res://icon.svg" id="1_b8l6f"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_h6obl"]
-[ext_resource type="Script" path="res://Scripts/Derp.gd" id="3_t1ptg"]
 [ext_resource type="Script" path="res://Scripts/Health.gd" id="5_7r5ni"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q561h"]
@@ -10,17 +9,16 @@ radius = 12.0
 height = 24.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_h6obl")
 SPEED = 60
+loot = "Coin"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_b8l6f")
-
-[node name="Node2D" type="Node2D" parent="."]
-script = ExtResource("3_t1ptg")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("5_7r5ni")
