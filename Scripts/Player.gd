@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@export_range(10,100) var SPEED = 30
+@export var loot:String
 
 signal respawn_player
 
@@ -29,5 +29,11 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
-	print("%d %d Velocity", velocity.x, velocity.y)
+	var formatted_output = "%d %d Velocity"
+	var actual_output = formatted_output % [velocity.x, velocity.y]
+	print(actual_output)
 	move_and_slide()
+
+
+func _on_health_dies():
+	print("Drops loot: " + loot)
