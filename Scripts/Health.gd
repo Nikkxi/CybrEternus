@@ -15,7 +15,8 @@ func _ready():
 
 func takeDamage(damage:int):
 	current_health -= damage
-	
+	print("Taken ", damage)
+	print("Current Health: ", current_health)
 	emit_signal("current_health_updated", current_health)
 	
 	if current_health <= 0:
@@ -27,3 +28,8 @@ func receiveHealing(health:int):
 	
 	if current_health > max_health:
 		current_health = max_health
+
+
+func resetHealth():
+	current_health = max_health
+	emit_signal("current_health_updated", current_health)
