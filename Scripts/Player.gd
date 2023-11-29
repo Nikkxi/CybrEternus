@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 var health:Health
 
+signal player_health_updated
+
 func _ready():
 	pass
 
@@ -18,8 +20,8 @@ func _physics_process(_delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Vector2.ZERO
-	direction.x = Input.get_axis("ui_left", "ui_right")
-	direction.y = Input.get_axis("ui_up", "ui_down")
+	direction.x = Input.get_axis("move_left", "move_right")
+	direction.y = Input.get_axis("move_up", "move_down")
 	direction = direction.normalized()
 	
 	if direction:
@@ -32,12 +34,17 @@ func _physics_process(_delta):
 	#var actual_output = formatted_output % [velocity.x, velocity.y]
 	#print(actual_output)
 	move_and_slide()
+	
+func reset():
+	get_node("Health").resetHealth()
 
+func take_damage(damage:int):
+	get_node("Health").takeDamage(damage)
+	
 
 func _on_health_dies():
 	print("Drops loot: " + loot)
 
 
-
-func _on_damage_player_button_pressed():
-	get_node("Health").takeDamage(2)
+func _on_health_current_health_updated(current_health):
+	emit_signal("player_health_updated", current_health)

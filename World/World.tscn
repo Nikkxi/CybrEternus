@@ -17,8 +17,13 @@ scale = Vector2(0.5, 0.5)
 [node name="SpawnPoint" type="Node2D" parent="."]
 position = Vector2(256, 128)
 
-[node name="HUD" parent="." instance=ExtResource("4_ykfah")]
-offset_right = 1920.0
-offset_bottom = 1080.0
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="UILayer" instance=ExtResource("4_ykfah")]
+scale = Vector2(0.5, 0.5)
+
+[connection signal="player_health_updated" from="Player" to="." method="_on_player_player_health_updated"]
+[connection signal="damage_player" from="UILayer/HUD" to="." method="_on_hud_damage_player"]
+[connection signal="respawn_player" from="UILayer/HUD" to="." method="_on_hud_respawn_player"]
 
 [editable path="Player"]

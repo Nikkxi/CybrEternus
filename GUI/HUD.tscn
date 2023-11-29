@@ -1,35 +1,50 @@
-[gd_scene format=3 uid="uid://dexglav57dfx"]
+[gd_scene load_steps=2 format=3 uid="uid://dexglav57dfx"]
 
-[node name="HUD" type="CanvasLayer"]
+[ext_resource type="Script" path="res://GUI/HUD.gd" id="1_71f68"]
 
-[node name="DamagePlayerButton" type="Button" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -73.5
-offset_right = 73.5
-offset_bottom = 31.0
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
 grow_horizontal = 2
+script = ExtResource("1_71f68")
+
+[node name="TopBar" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="HealthLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Health:"
+vertical_alignment = 1
+
+[node name="CurrentHealth" type="Label" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+vertical_alignment = 1
+text_direction = 1
+
+[node name="Spacer" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DamagePlayerButton" type="Button" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
 text = "Damage Player : 2"
 
-[node name="RespawnPlayerButton" type="Button" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -131.0
-offset_bottom = 31.0
-grow_horizontal = 0
+[node name="RespawnPlayerButton" type="Button" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
 text = "Respawn Player"
 
-[node name="HealthLabel" type="RichTextLabel" parent="."]
-offset_right = 57.0
-offset_bottom = 26.0
-text = "Health:"
-
-[node name="CurrentHealth" type="Label" parent="."]
-layout_direction = 2
-offset_left = 60.0
-offset_right = 87.0
-offset_bottom = 23.0
-text = "0"
-text_direction = 1
+[connection signal="pressed" from="TopBar/DamagePlayerButton" to="." method="_on_damage_player_button_pressed"]
+[connection signal="pressed" from="TopBar/RespawnPlayerButton" to="." method="_on_respawn_player_button_pressed"]

@@ -23,7 +23,7 @@ func takeDamage(damage:int):
 		Dies.emit()
 
 
-func receiveHealing(health:int):
+func heal(health:int):
 	current_health += health
 	
 	if current_health > max_health:
