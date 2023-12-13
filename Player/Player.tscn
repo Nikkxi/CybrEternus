@@ -26,5 +26,5 @@ script = ExtResource("5_7r5ni")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_q561h")
 
-[connection signal="Dies" from="Health" to="." method="_on_health_dies"]
 [connection signal="current_health_updated" from="Health" to="." method="_on_health_current_health_updated"]
+[connection signal="player_died" from="Health" to="." method="_on_player_death"]

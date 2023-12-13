@@ -7,6 +7,7 @@ extends CharacterBody2D
 var health:Health
 
 signal player_health_updated
+signal player_died
 
 func _ready():
 	pass
@@ -48,3 +49,6 @@ func _on_health_dies():
 
 func _on_health_current_health_updated(current_health):
 	emit_signal("player_health_updated", current_health)
+
+func _on_player_death():
+	emit_signal("player_died")

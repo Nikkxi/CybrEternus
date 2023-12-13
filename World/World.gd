@@ -32,3 +32,7 @@ func _on_hud_damage_player():
 
 func _on_player_player_health_updated(player_current_health):
 	get_node("UILayer/HUD").player_health_updated(player_current_health)
+
+
+func _on_player_died():
+	pass
