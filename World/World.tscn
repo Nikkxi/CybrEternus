@@ -22,9 +22,8 @@ position = Vector2(256, 128)
 [node name="HUD" parent="UILayer" instance=ExtResource("4_ykfah")]
 scale = Vector2(0.5, 0.5)
 
-[connection signal="player_died" from="Player" to="." method="_on_player_died"]
-[connection signal="player_health_updated" from="Player" to="." method="_on_player_player_health_updated"]
-[connection signal="damage_player" from="UILayer/HUD" to="." method="_on_hud_damage_player"]
-[connection signal="respawn_player" from="UILayer/HUD" to="." method="_on_hud_respawn_player"]
+[connection signal="player_health_updated" from="Player" to="." method="_on_player_health_updated"]
+[connection signal="damage_player" from="UILayer/HUD" to="." method="damage_player"]
+[connection signal="respawn_player" from="UILayer/HUD" to="." method="respawn_player"]
 
 [editable path="Player"]

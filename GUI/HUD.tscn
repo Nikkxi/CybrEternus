@@ -1,20 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://dexglav57dfx"]
+[gd_scene load_steps=3 format=3 uid="uid://dexglav57dfx"]
 
 [ext_resource type="Script" path="res://GUI/HUD.gd" id="1_71f68"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ree1a"]
+font_size = 48
+
 [node name="HUD" type="Control"]
 layout_mode = 3
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_71f68")
 
 [node name="TopBar" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 26.0
+offset_bottom = 31.0
 grow_horizontal = 2
 
 [node name="HealthLabel" type="Label" parent="TopBar"]
@@ -46,5 +52,73 @@ size_flags_horizontal = 8
 focus_mode = 0
 text = "Respawn Player"
 
+[node name="Spacer2" type="Control" parent="TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TransparentBackground" type="ColorRect" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243137, 0.243137, 0.243137, 0.87451)
+
+[node name="Control" type="Control" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="GameOver/Control/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_ree1a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOver/Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="spacer" type="Control" parent="GameOver/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="GameOver/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="spacer2" type="Control" parent="GameOver/Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [connection signal="pressed" from="TopBar/DamagePlayerButton" to="." method="_on_damage_player_button_pressed"]
 [connection signal="pressed" from="TopBar/RespawnPlayerButton" to="." method="_on_respawn_player_button_pressed"]
+[connection signal="pressed" from="GameOver/Control/VBoxContainer/HBoxContainer/Button" to="." method="_on_game_restart"]

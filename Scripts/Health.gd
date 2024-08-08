@@ -5,7 +5,7 @@ class_name Health
 @export var max_health = 10
 var current_health
 
-signal player_died
+signal has_died
 signal current_health_updated
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +20,7 @@ func takeDamage(damage:int):
 	emit_signal("current_health_updated", current_health)
 	
 	if current_health <= 0:
-		emit_signal("player_died")
+		emit_signal("has_died")
 
 
 func heal(health:int):

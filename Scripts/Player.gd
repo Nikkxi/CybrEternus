@@ -7,10 +7,12 @@ extends CharacterBody2D
 var health:Health
 
 signal player_health_updated
-signal player_died
+signal player_has_died
 
 func _ready():
-	pass
+	health  = $Health
+	health.has_died.connect(_on_player_death)
+
 
 func _process(_delta):
 	if Input.is_action_pressed("quit"):
@@ -36,19 +38,20 @@ func _physics_process(_delta):
 	#print(actual_output)
 	move_and_slide()
 	
-func reset():
+func reset(spawnPosition:Vector2):
 	get_node("Health").resetHealth()
+	position = spawnPosition
+	
+func update_position(new_position:Vector2):
+	position = new_position
 
 func take_damage(damage:int):
 	get_node("Health").takeDamage(damage)
-	
-
-func _on_health_dies():
-	print("Drops loot: " + loot)
 
 
 func _on_health_current_health_updated(current_health):
 	emit_signal("player_health_updated", current_health)
 
+
 func _on_player_death():
-	emit_signal("player_died")
+	emit_signal("player_has_died")
