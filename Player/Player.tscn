@@ -6,17 +6,20 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q561h"]
 radius = 12.0
-height = 24.0
+height = 32.0
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_h6obl")
 SPEED = 60
 loot = "Coin"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_b8l6f")
 
@@ -27,4 +30,4 @@ script = ExtResource("5_7r5ni")
 shape = SubResource("CapsuleShape2D_q561h")
 
 [connection signal="current_health_updated" from="Health" to="." method="_on_health_current_health_updated"]
-[connection signal="player_died" from="Health" to="." method="_on_player_death"]
+[connection signal="has_died" from="Health" to="." method="_on_player_death"]

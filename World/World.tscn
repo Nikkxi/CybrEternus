@@ -2,28 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://c50ms1m1reutm" path="res://Player/Player.tscn" id="1_ix8wh"]
 [ext_resource type="Script" path="res://World/World.gd" id="1_vny17"]
-[ext_resource type="PackedScene" uid="uid://sb6glkmeic2p" path="res://Maps/SandboxMap.tscn" id="2_s8fdq"]
+[ext_resource type="PackedScene" uid="uid://cl030cfkebyx" path="res://Maps/demo_map.tscn" id="2_xein5"]
 [ext_resource type="PackedScene" uid="uid://dexglav57dfx" path="res://GUI/HUD.tscn" id="4_ykfah"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_vny17")
 
-[node name="TileMap" parent="." instance=ExtResource("2_s8fdq")]
-scale = Vector2(2, 2)
+[node name="Map" parent="." instance=ExtResource("2_xein5")]
+y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_ix8wh")]
-scale = Vector2(0.5, 0.5)
+z_index = 1
 
 [node name="SpawnPoint" type="Node2D" parent="."]
-position = Vector2(256, 128)
+position = Vector2(145, 210)
 
-[node name="UILayer" type="CanvasLayer" parent="."]
+[node name="HUD" parent="." instance=ExtResource("4_ykfah")]
 
-[node name="HUD" parent="UILayer" instance=ExtResource("4_ykfah")]
-scale = Vector2(0.5, 0.5)
-
+[connection signal="player_has_died" from="Player" to="." method="_on_player_died"]
 [connection signal="player_health_updated" from="Player" to="." method="_on_player_health_updated"]
-[connection signal="damage_player" from="UILayer/HUD" to="." method="damage_player"]
-[connection signal="respawn_player" from="UILayer/HUD" to="." method="respawn_player"]
-
-[editable path="Player"]
+[connection signal="damage_player" from="HUD" to="." method="damage_player"]
+[connection signal="respawn_player" from="HUD" to="." method="respawn_player"]
+[connection signal="restart_game" from="HUD" to="." method="_on_game_restart"]

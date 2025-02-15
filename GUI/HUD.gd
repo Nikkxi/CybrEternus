@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 
 signal respawn_player
@@ -16,7 +16,7 @@ func _process(delta):
 	
 
 func player_health_updated(player_current_health):
-	get_node("TopBar/CurrentHealth").text = str(player_current_health)
+	get_node("GameHUD/CurrentHealth").text = str("Health: ", player_current_health)
 	
 func _on_respawn_player_button_pressed():
 	emit_signal("respawn_player")
@@ -27,10 +27,10 @@ func _on_damage_player_button_pressed():
 
 
 func _on_player_died():
-	get_node("TopBar").visible = false
+	get_node("GameHUD").visible = false
 	get_node("GameOver").visible = true
 	
 func _on_game_restart():
-	get_node("TopBar").visible = true
+	get_node("GameHUD").visible = true
 	get_node("GameOver").visible = false
 	emit_signal("restart_game")

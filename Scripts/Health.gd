@@ -25,11 +25,10 @@ func takeDamage(damage:int):
 
 func heal(health:int):
 	current_health += health
-	
-	if current_health > max_health:
-		current_health = max_health
+	current_health = mini(current_health,max_health)
 
 
 func resetHealth():
 	current_health = max_health
+	print("Reset health to ", current_health)
 	emit_signal("current_health_updated", current_health)

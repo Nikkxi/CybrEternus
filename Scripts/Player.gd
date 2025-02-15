@@ -11,7 +11,7 @@ signal player_has_died
 
 func _ready():
 	health  = $Health
-	health.has_died.connect(_on_player_death)
+	#health.has_died.connect(_on_player_death)
 
 
 func _process(_delta):
@@ -39,14 +39,14 @@ func _physics_process(_delta):
 	move_and_slide()
 	
 func reset(spawnPosition:Vector2):
-	get_node("Health").resetHealth()
+	health.resetHealth()
 	position = spawnPosition
 	
 func update_position(new_position:Vector2):
 	position = new_position
 
 func take_damage(damage:int):
-	get_node("Health").takeDamage(damage)
+	health.takeDamage(damage)
 
 
 func _on_health_current_health_updated(current_health):

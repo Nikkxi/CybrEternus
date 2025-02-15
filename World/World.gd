@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	player.player_has_died.connect(_on_player_died)
+	#player.player_has_died.connect(_on_player_died)
 	player.reset(spawnPoint.position)
 	
 
@@ -16,13 +16,9 @@ func _process(_delta):
 	pass
 
 
-func respawn_player():
-	print("Respawning the player. . .")
-	player.update_position(spawnPoint.position)
-	print("Player reset to spawn point")
-	var playerHealth = get_node("Player/Health")
-	playerHealth.resetHealth()
-	print("Player health reset to ", playerHealth.current_health)
+func reset_player():
+	print("Resetting the player. . .")
+	player.reset(spawnPoint.position)
 
 
 func damage_player():
@@ -30,14 +26,14 @@ func damage_player():
 
 
 func _on_player_health_updated(player_current_health):
-	get_node("UILayer/HUD").player_health_updated(player_current_health)
+	get_node("HUD").player_health_updated(player_current_health)
 
 
 func _on_player_died():
 	print("The player has died")
-	get_node("UILayer/HUD")._on_player_died()
+	get_node("HUD")._on_player_died()
 	
 	
 func _on_game_restart():
 	print("Restarting the game")
-	player.reset(spawnPoint.position)
+	reset_player()
